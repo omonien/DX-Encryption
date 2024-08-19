@@ -1,0 +1,3 @@
+[submodule "DelphiEncryptionCompendium"]
+	path = DelphiEncryptionCompendium
+	url = https://github.com/MHumm/DelphiEncryptionCompendium.git
