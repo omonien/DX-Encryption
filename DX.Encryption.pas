@@ -118,16 +118,19 @@ begin
       // Default for AES is authentication mode
       ACipherMode := cmGCM;
     end;
-    ACipher.AuthenticationResultBitLength := 128;
   end
   else
   begin
     if ACipherMode = cmDefault then
     begin
-      ACipherMode := cmECBx;
+       ACipherMode := cmCBCx;
     end;
   end;
   ACipher.Mode := DECCipherBase.TCipherMode(ACipherMode);
+  if ACipherMode = cmGCM then begin
+    //Only with cmGCM
+    ACipher.AuthenticationResultBitLength := 128;
+  end;
   ACipher.FillMode := fmByte;
 
   // InitVector
