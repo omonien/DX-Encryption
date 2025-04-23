@@ -131,7 +131,6 @@ begin
     //Only with cmGCM
     ACipher.AuthenticationResultBitLength := 128;
   end;
-  ACipher.FillMode := fmByte;
 
   // InitVector
   LInitVector := ''; // '!"§%_42_SomeSecretInitializationVector_!§$%_0815'; // Todo: make configurable
@@ -140,7 +139,7 @@ begin
   // Key Length
   LMaxKeySize := ACipher.Context.KeySize; // div 2; // String is 2 bytes per char
   LKey := RawByteString(Copy(AKey, 1, LMaxKeySize));
-  ACipher.Init(LKey, LInitVector);
+  ACipher.Init(LKey, LInitVector, 255, TPaddingMode.pmNone);
 end;
 
 class function TDXCipher.Encrypt(AInput: string; APassword: AnsiString; ACipherClass: TDECFormattedCipherClass;
